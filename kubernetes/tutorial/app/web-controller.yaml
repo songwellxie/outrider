@@ -17,5 +17,6 @@ spec:
       - image: klaus1982/web-demo
         name: web
         ports:
-        - containerPort: 3001
-          name: http-server
+        - name: nodejs
+          containerPort: 3001
+          hostPort: 3001
