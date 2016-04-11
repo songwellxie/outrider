@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
     })
   });
 
-  res.send('The ' + reqCnt + ' request is handle by ' + os.hostname() + '. @k82')
+  res.send('Time<2016-4-11 13:04> The ' + reqCnt + ' request is handle by ' + os.hostname() + '. @k82')
 
   reqCnt = parseInt(reqCnt) + 1;
 
