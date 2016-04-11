@@ -18,15 +18,19 @@
 
 * 在`kubelet`启动时设置DNS:
 
-	--cluster-dns=10.1.1.1
-	--cluster-domain=kube-demo
+  ```
+  --cluster-dns=10.1.1.1
+  --cluster-domain=kube-demo
+  ```
 
 > 目前需要`--service-cluster-ip-range`和`--cluster-cidr`在同一子网，原因还不清楚。
 
 
 ## Kubernetes Dashboard
 
-    kubectl create -f kubernetes-dashboard.yaml
+```
+kubectl create -f kubernetes-dashboard.yaml
+```
 
 > 需要修改YAML文件中的参数来指定apiserver地址。
 
@@ -39,4 +43,6 @@
 
 ## Private Respository/Secret
 
-    kubectl create secret docker-registry NAME --docker-username=xxx --docker-password=xxx --docker-email=xxx
+```
+kubectl create secret docker-registry NAME --docker-username=xxx --docker-password=xxx --docker-email=xxx
+```
