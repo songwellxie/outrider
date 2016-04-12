@@ -5,7 +5,7 @@ metadata:
     name: web
   name: web-controller
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     name: web
   template:
@@ -14,9 +14,11 @@ spec:
         name: web
     spec:
       containers:
-      - image: klaus1982/web-demo
+      - image: klaus1982/web-demo-priv
         name: web
+        imagePullPolicy: Always
         ports:
-        - name: nodejs
+        - name: web
           containerPort: 3001
-          hostPort: 3001
+      imagePullSecrets:
+        - name: k82
