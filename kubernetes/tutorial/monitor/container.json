@@ -1,0 +1,2579 @@
+{
+  "id": 2,
+  "title": "Containers",
+  "originalTitle": "Containers",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 1,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "container",
+          "scopedVars": {
+            "container": {
+              "text": "etcd",
+              "value": "etcd"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 15,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "gold",
+              "value": "gold"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 1
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 16,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "grafana",
+              "value": "grafana"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 1
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 17,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "healthz",
+              "value": "healthz"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 1
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 18,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "heapster",
+              "value": "heapster"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 1
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 19,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "influxdb",
+              "value": "influxdb"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 1
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 20,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "kube2sky",
+              "value": "kube2sky"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 1
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 21,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "kubernetes-dashboard",
+              "value": "kubernetes-dashboard"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 1
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 22,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "skydns",
+              "value": "skydns"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/limit",
+              "query": "SELECT last(value) FROM \"memory/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/usage",
+              "query": "SELECT last(value) FROM \"memory/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Working Set",
+              "fields": [
+                {
+                  "func": "last",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "memory/working_set",
+              "query": "SELECT last(value) FROM \"memory/working_set\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": false,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "bytes",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 1
+        }
+      ],
+      "title": "Container Memory"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 14,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "container",
+          "scopedVars": {
+            "container": {
+              "text": "etcd",
+              "value": "etcd"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 23,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "gold",
+              "value": "gold"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 14
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 24,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "grafana",
+              "value": "grafana"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 14
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 25,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "healthz",
+              "value": "healthz"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 14
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 26,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "heapster",
+              "value": "heapster"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 14
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 27,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "influxdb",
+              "value": "influxdb"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 14
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 28,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "kube2sky",
+              "value": "kube2sky"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 14
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 29,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "kubernetes-dashboard",
+              "value": "kubernetes-dashboard"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 14
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "decimals": 2,
+          "editable": true,
+          "error": false,
+          "fill": 3,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "hideTimeOverride": false,
+          "id": 30,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "minSpan": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "scopedVars": {
+            "container": {
+              "text": "skydns",
+              "value": "skydns"
+            }
+          },
+          "seriesOverrides": [
+            {},
+            {
+              "alias": "Used Memory",
+              "yaxis": 1
+            }
+          ],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Limit",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT mean(value) FROM \"cpu/limit\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval) fill(null)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            },
+            {
+              "alias": "Usage",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "fill": "null",
+              "groupByTags": [],
+              "hide": false,
+              "measurement": "cpu/limit_gauge",
+              "query": "SELECT derivative(value)/10000000 FROM \"cpu/usage\" WHERE \"container_name\" =~ /$container/ AND $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "container_name",
+                  "value": "/$container/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Container \"$container\" CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ],
+          "repeatIteration": 1460603909508,
+          "repeatPanelId": 14
+        }
+      ],
+      "title": "Container CPU"
+    }
+  ],
+  "nav": [
+    {
+      "collapse": false,
+      "enable": true,
+      "notice": false,
+      "now": true,
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "status": "Stable",
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ],
+      "type": "timepicker"
+    }
+  ],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "allFormat": "regex wildcard",
+        "current": {
+          "text": "All",
+          "value": ".*",
+          "tags": []
+        },
+        "datasource": null,
+        "includeAll": true,
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "namespace",
+        "options": [
+          {
+            "text": "All",
+            "value": ".*",
+            "selected": true
+          },
+          {
+            "text": "default",
+            "value": "default",
+            "selected": false
+          },
+          {
+            "text": "kube-system",
+            "value": "kube\\-system",
+            "selected": false
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"uptime\" WITH KEY = \"pod_namespace\"",
+        "refresh": true,
+        "refresh_on_load": false,
+        "type": "query"
+      },
+      {
+        "allFormat": "regex wildcard",
+        "current": {
+          "text": "All",
+          "value": ".*"
+        },
+        "datasource": null,
+        "includeAll": true,
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "pod",
+        "options": [
+          {
+            "text": "All",
+            "value": ".*"
+          },
+          {
+            "text": "gold-app-3lpns",
+            "value": "gold\\-app\\-3lpns"
+          },
+          {
+            "text": "gold-app-87m4d",
+            "value": "gold\\-app\\-87m4d"
+          },
+          {
+            "text": "gold-app-8larx",
+            "value": "gold\\-app\\-8larx"
+          },
+          {
+            "text": "gold-app-f5vis",
+            "value": "gold\\-app\\-f5vis"
+          },
+          {
+            "text": "gold-app-icyea",
+            "value": "gold\\-app\\-icyea"
+          },
+          {
+            "text": "gold-app-novv9",
+            "value": "gold\\-app\\-novv9"
+          },
+          {
+            "text": "heapster-i4ahs",
+            "value": "heapster\\-i4ahs"
+          },
+          {
+            "text": "influxdb-grafana-4jm5x",
+            "value": "influxdb\\-grafana\\-4jm5x"
+          },
+          {
+            "text": "influxdb-grafana-uklym",
+            "value": "influxdb\\-grafana\\-uklym"
+          },
+          {
+            "text": "kube-dns-v11-wiuwa",
+            "value": "kube\\-dns\\-v11\\-wiuwa"
+          },
+          {
+            "text": "kubernetes-dashboard-camc0",
+            "value": "kubernetes\\-dashboard\\-camc0"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"uptime\" WITH KEY = \"pod_name\" WHERE pod_namespace =~ /$namespace/ ",
+        "refresh": true,
+        "refresh_on_load": true,
+        "type": "query"
+      },
+      {
+        "allFormat": "glob",
+        "current": {
+          "text": "All",
+          "value": "{etcd,gold,grafana,healthz,heapster,influxdb,kube2sky,kubernetes-dashboard,skydns}"
+        },
+        "datasource": null,
+        "includeAll": true,
+        "multi": false,
+        "multiFormat": "glob",
+        "name": "container",
+        "options": [
+          {
+            "text": "All",
+            "value": "{etcd,gold,grafana,healthz,heapster,influxdb,kube2sky,kubernetes-dashboard,skydns}"
+          },
+          {
+            "text": "etcd",
+            "value": "etcd"
+          },
+          {
+            "text": "gold",
+            "value": "gold"
+          },
+          {
+            "text": "grafana",
+            "value": "grafana"
+          },
+          {
+            "text": "healthz",
+            "value": "healthz"
+          },
+          {
+            "text": "heapster",
+            "value": "heapster"
+          },
+          {
+            "text": "influxdb",
+            "value": "influxdb"
+          },
+          {
+            "text": "kube2sky",
+            "value": "kube2sky"
+          },
+          {
+            "text": "kubernetes-dashboard",
+            "value": "kubernetes-dashboard"
+          },
+          {
+            "text": "skydns",
+            "value": "skydns"
+          }
+        ],
+        "query": "SHOW TAG VALUES FROM \"uptime\" WITH KEY = \"container_name\" WHERE pod_name =~ /$pod/ and \"pod_namespace\" =~ /$namespace/",
+        "refresh": true,
+        "refresh_on_load": true,
+        "type": "query"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "schemaVersion": 6,
+  "version": 2,
+  "links": []
+}
