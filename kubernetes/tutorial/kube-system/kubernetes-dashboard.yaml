@@ -38,7 +38,7 @@ items:
       spec:
         containers:
         - name: kubernetes-dashboard
-          image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.0.1
+          image: outrider/k8s-dashboard
           imagePullPolicy: Always
           ports:
           - containerPort: 9090
@@ -47,7 +47,7 @@ items:
             # Uncomment the following line to manually specify Kubernetes API server Host
             # If not specified, Dashboard will attempt to auto discover the API server and connect
             # to it. Uncomment only if the default does not work.
-          - --apiserver-host=http://ma1demo1:8888
+          - --apiserver-host=http://cdemo01:8888
           livenessProbe:
             httpGet:
               path: /
