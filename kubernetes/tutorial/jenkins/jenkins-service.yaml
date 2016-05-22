@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: jenkins
   name: jenkins
-  namespace: default
+  labels:
+    name: jenkins
 spec:
-  ports:
-  - port: 29080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: jenkins
   type: LoadBalancer
+  ports:
+    - port: 29080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    name: jenkins

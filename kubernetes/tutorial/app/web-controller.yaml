@@ -14,11 +14,9 @@ spec:
         name: web
     spec:
       containers:
-      - image: klaus1982/web-demo-priv
+      - image: klaus1982/demo-web
         name: web
         imagePullPolicy: Always
         ports:
         - name: web
           containerPort: 3001
-      imagePullSecrets:
-        - name: k82
