@@ -7,7 +7,7 @@ COPY hadoop-2.7.2.tar.gz /opt/
 
 RUN cd /opt/ && tar zxvf hadoop-2.7.2.tar.gz && rm hadoop-2.7.2.tar.gz
 
-COPY ./master_bootstrap.sh /opt/bootstrap.sh
+COPY ./agent_bootstrap.sh /opt/bootstrap.sh
 COPY core-site.xml.template /root/
 COPY yarn-site.xml.template /root/
 COPY hdfs-site.xml.template /root/
