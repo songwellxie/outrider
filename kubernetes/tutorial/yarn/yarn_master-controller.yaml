@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: yarn-master
+  name: yarn-master-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: yarn-master
+    spec:
+      containers:
+      - image: klaus1982/yarn_master
+        name: yarn-master
+        ports:
+        - containerPort: 31010
+          hostPort: 31010
+        - containerPort: 50020
+        - containerPort: 50070
+        - containerPort: 50075
+        - containerPort: 50090
+        - containerPort: 8020
+        - containerPort: 9000
+        - containerPort: 19888
+        - containerPort: 8030
+        - containerPort: 8031
+        - containerPort: 8032
+        - containerPort: 8033
+        - containerPort: 8040
+        - containerPort: 8042
+        - containerPort: 8088
+        - containerPort: 49707
+        - containerPort: 2122

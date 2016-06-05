@@ -17,24 +17,16 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-    <property>
-            <name>dfs.replication</name>
-            <value>1</value>
-    </property>
-    <property>
-            <name>dfs.namenode.name.dir</name>
-            <value>file:/opt/hadoop272/dfs/name</value>
-    </property>
-    <property>
-            <name>dfs.datanode.data.dir</name>
-            <value>file:/opt/hadoop272/dfs/data</value>
-    </property>
-    <property>
-            <name>dfs.namenode.datanode.registration.ip-hostname-check</name>                   
-            <value>false</value>
-    </property>
-    <property>
-            <name>dfs.datanode.address</name>                   
-            <value>0.0.0.0:31010</value>
-    </property>
+ <property>
+         <name>fs.defaultFS</name>
+         <value>hdfs://__HOSTNAME__:9000</value>
+ </property>
+   <property>
+         <name>io.file.buffer.size</name>
+         <value>131072</value>
+   </property>
+   <property>
+         <name>hadoop.tmp.dir</name>
+         <value>file:/opt/hadoop272/tmp</value>
+   </property>
 </configuration>
