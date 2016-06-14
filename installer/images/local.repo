@@ -1,0 +1,5 @@
+[local]
+name=rhel7.1
+baseurl=http://9.111.249.112/install/rhels7.1/x86_64
+gpgcheck=0
+enabled=1
