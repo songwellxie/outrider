@@ -5,6 +5,7 @@ kube-proxy --cleanup-iptables=true
 
 ETCD_WORK_DIR=/opt/ibm/dcos/work/etcd/
 MESOS_MASTER=cdemo01:5050
+K8S_ROLE=k8s_1
 
 ETCD_URL=$(hostname -i):4001
 K8S_MASTER_IP=$(hostname -i)
@@ -86,6 +87,8 @@ km scheduler \
     --api-servers=${API_SERV_URL} \
     --cluster-dns=${CLUSTER_DNS}  \
     --cluster-domain=${CLUSTER_DOMAIN} \
+    --mesos-framework-roles=${K8S_ROLE} \
+    --mesos-default-pod-roles=${K8S_ROLE} \
     --v=2 >scheduler.log 2>&1 &
 
 disown -a
