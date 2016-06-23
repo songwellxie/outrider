@@ -26,7 +26,7 @@ echo "**************************************"
 
 etcd --data-dir ${ETCD_WORK_DIR} \
   --listen-client-urls http://0.0.0.0:4001 \
-  --advertise-client-urls http://${ETCD_URL} 2>&1 > etcd.log &
+  --advertise-client-urls http://${ETCD_URL} > etcd.log 2>&1 &
 
 sleep 10
 
