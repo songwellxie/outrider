@@ -3,9 +3,13 @@ MAINTAINER Klaus Ma <madaxa@cn.ibm.com>
 
 RUN apt-get update
 
-RUN apt-get install curl
+RUN apt-get -y install curl git tar wget
 
-RUN curl --create-dirs -sSLo /usr/share/jenkins/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/2.52/remoting-2.52.jar \
+RUN apt-get install -y openjdk-7-jdk autoconf libtool
+
+RUN apt-get -y install build-essential python-dev libcurl4-nss-dev libsasl2-dev libsasl2-modules maven libapr1-dev libsvn-dev
+
+RUN curl --create-dirs -sSLo /usr/share/jenkins/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/2.9/remoting-2.9.jar \
     && chmod 755 /usr/share/jenkins \
     && chmod 644 /usr/share/jenkins/slave.jar
 

@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var app = express()
 
-mongoose.connect('mongodb://mongo/mydb');
+mongoose.connect('mongodb://mongo:31100/mydb');
 
 var CntSchema = mongoose.Schema({
   name: String,

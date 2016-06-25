@@ -1,0 +1,135 @@
+<html>
+<head>
+  <script src="/jquery-3.0.0.min.js" type="text/javascript"></script>
+    <script src="/highcharts.js" type="text/javascript"></script>
+    </head>
+    <body>
+
+    <table>
+    <tr>
+    <td>
+    <div id="container" style="width:400px; height:300px;"></div>
+    </td>
+    <td>
+
+    <div id="container1" style="width:400px; height:300px;"></div>
+    </td>
+    <td>
+    <div id="container2" style="width:400px; height:300px;"></div>
+    </td>
+    </tr>
+    </table>
+
+    <script type="text/javascript">
+    $(function () {
+            $("#container").highcharts({
+chart: {
+type: 'pie'
+},
+title: {
+text: 'Mesos Offer'
+},
+
+plotOptions: {
+pie: {
+allowPointSelect: true,
+cursor: 'pointer',
+dataLabels: {
+enabled: false
+},
+showInLegend: true
+}
+},
+
+series: [{
+name: 'Offers',
+      colorByPoint: true,
+      data: [{
+name: 'Used Offers',
+      y: 56.33
+      }, {
+name: 'Allocated Offers',
+      y: 24.03,
+      sliced: true,
+      selected: true
+      }, {
+name: 'Unused Offers',
+      y: 10.38
+      }]
+        }]
+});
+
+$("#container1").highcharts({
+chart: {
+type: 'pie'
+},
+title: {
+text: 'Mesos Agents'
+},
+
+plotOptions: {
+pie: {
+allowPointSelect: true,
+cursor: 'pointer',
+dataLabels: {
+enabled: false
+},
+showInLegend: true
+}
+},
+
+series: [{
+name: 'arch',
+      colorByPoint: true,
+      data: [{
+name: 'Power',
+      y: 56.33
+      }, {
+name: 'x64',
+      y: 24.03,
+      sliced: true,
+      selected: true
+      }]
+        }]
+});
+
+    $('#container2').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Mesos Running Tasks'
+        },
+        subtitle: {
+            text: '0.28.1'
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Running Tasks'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Running (x86)',
+            data: [7.0, 6.0, 5, 4, 8, 11, 15]
+        }, {
+            name: 'Running (power)',
+            data: [4.0, 3.0, 7, 14, 5, 1, 5]
+        }]
+    });
+
+});
+</script>
+
+</body>
+</html>
