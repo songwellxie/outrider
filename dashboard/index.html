@@ -1,101 +1,244 @@
 <html>
 <head>
-  <script src="/jquery-3.0.0.min.js" type="text/javascript"></script>
-    <script src="/highcharts.js" type="text/javascript"></script>
-    </head>
-    <body>
 
-    <table>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+
+</head>
+<body>
+
+<table>
     <tr>
-    <td>
-    <div id="container" style="width:400px; height:300px;"></div>
-    </td>
-    <td>
-
-    <div id="container1" style="width:400px; height:300px;"></div>
-    </td>
-    <td>
-    <div id="container2" style="width:400px; height:300px;"></div>
-    </td>
+        <td>
+            <div id="container" style="width:400px; height:300px;"></div>
+        </td>
+        <td>
+            <div id="container1" style="width:400px; height:300px;"></div>
+        </td>
+        <td>
+            <div id="container2" style="width:400px; height:300px;"></div>
+        </td>
     </tr>
-    </table>
+</table>
 
-    <script type="text/javascript">
-    $(function () {
-            $("#container").highcharts({
-chart: {
-type: 'pie'
-},
-title: {
-text: 'Mesos Offer'
-},
 
-plotOptions: {
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {
-enabled: false
-},
-showInLegend: true
-}
-},
 
-series: [{
-name: 'Offers',
-      colorByPoint: true,
-      data: [{
-name: 'Used Offers',
-      y: 56.33
-      }, {
-name: 'Allocated Offers',
-      y: 24.03,
-      sliced: true,
-      selected: true
-      }, {
-name: 'Unused Offers',
-      y: 10.38
-      }]
+<script>
+		var offerChart; // global
+		var agentChart; // global
+		var taskChart;  // global
+    var agentInfo = {};
+
+		/**
+		 * Request data from the server, add it to the graph and set a timeout to request again
+		 */
+		function requestOfferData() {
+			$.ajax({
+        url: 'http://9.111.143.201:5050/slaves',
+				success: function(data) {
+          newData={}; 
+
+          newData.used_offers = 0;
+          newData.free_offers = 0;
+          newData.total_offers = 0;
+          newData.allocated_offers = 0;
+
+          for (x in data.slaves) {
+            newData.used_offers += data.slaves[x].used_resources.cpus;
+            newData.allocated_offers += data.slaves[x].offered_resources.cpus;
+            newData.total_offers += data.slaves[x].unreserved_resources.cpus;
+          }
+
+          newData.free_offers = newData.total_offers - newData.used_offers - newData.allocated_offers;
+
+          pieData = [{
+            name: 'Used Offers',
+            y: newData.used_offers,
+          }, {
+            name: 'Allocated Offers',
+            y: newData.allocated_offers,
+          }, {
+            name: 'Unused Offers',
+            y: newData.free_offers,
+          }]
+
+					offerChart.series[0].setData(pieData);
+
+					// call it again after one second
+					setTimeout(requestOfferData, 1000);
+				},
+				cache: false
+			});
+		}
+
+		function requestAgentData() {
+			$.ajax({
+        url: 'http://9.111.143.201:5050/slaves',
+				success: function(data) {
+          newData={}; 
+
+          newData.powerAgent = 0;
+          newData.x86Agent = 0;
+
+          for (x in data.slaves) {
+            var hn = data.slaves[x].hostname;
+            if (hn == "dcosdemo02" || hn == "dcosdemo03") {
+              newData.powerAgent += 1;
+              agentInfo[data.slaves[x].id] = 1;
+            } else {
+              newData.x86Agent += 1;
+              agentInfo[data.slaves[x].id] = 0;
+            }
+          }
+
+          pieData = [{
+            name: 'Power',
+            y: newData.powerAgent,
+          }, {
+            name: 'X86',
+            y: newData.x86Agent,
+          }]
+
+					agentChart.series[0].setData(pieData);
+
+					// call it again after one second
+					setTimeout(requestAgentData, 1000);
+				},
+				cache: false
+			});
+		}
+
+		function requestTaskData() {
+			$.ajax({
+        url: 'http://9.111.143.201:5050/tasks',
+				success: function(data) {
+          newData={}; 
+
+          newData.powerAgent = 0;
+          newData.x86Agent = 0;
+
+          for (x in data.tasks) {
+            if (!(data.tasks[x].state && data.tasks[x].slave_id)) {
+              continue;
+            }
+            if (data.tasks[x].state != "TASK_RUNNING")  {
+              continue;
+            }
+
+            alert(x);
+            var slaveId = data.tasks[x].slave_id;
+            if (agentInfo[slaveId] && agentInfo[slaveId] == 1) {
+              newData.powerAgent += 1;
+            } else {
+              newData.x86Agent += 1;
+            }
+          }
+
+          datetime = (new Date()).time();
+
+          alert(datetime);
+          alert(newData.powerAgent);
+          alert(newData.x86Agent);
+
+          pointPoint = [datetime, newData.powerAgent];
+          x86Point = [datetime, newData.x86Agent];
+
+          var series = chart.series[0],
+              shift = series.data.length > 20; // shift if the series is longer than 20
+
+          // add the point
+          chart.series[0].addPoint(powerPoint, true, shift);
+          chart.series[1].addPoint(x86Point, true, shift);
+
+					// call it again after one second
+					setTimeout(requestTaskData, 1000);
+				},
+				cache: false
+			});
+		}
+
+
+		$(document).ready(function() {
+			offerChart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'container',
+					defaultSeriesType: 'pie',
+					events: {
+						load: requestOfferData
+					}
+				},
+				title: {
+					text: 'Mesos Offer'
+				},
+				plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true
+          }
+        },
+
+        series: [{
+          name: 'Offers',
+          colorByPoint: true,
+          data: [{
+            name: 'Used Offers',
+            y: 56.33
+          }, {
+            name: 'Allocated Offers',
+            y: 24.03,
+          }, {
+            name: 'Unused Offers',
+            y: 10.38
+          }]
         }]
-});
+			});
 
-$("#container1").highcharts({
-chart: {
-type: 'pie'
-},
-title: {
-text: 'Mesos Agents'
-},
+			agentChart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'container1',
+					defaultSeriesType: 'pie',
+					events: {
+						load: requestAgentData
+					}
+				},
+				title: {
+					text: 'Mesos Agents'
+				},
+				plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true
+          }
+        },
 
-plotOptions: {
-pie: {
-allowPointSelect: true,
-cursor: 'pointer',
-dataLabels: {
-enabled: false
-},
-showInLegend: true
-}
-},
-
-series: [{
-name: 'arch',
-      colorByPoint: true,
-      data: [{
-name: 'Power',
-      y: 56.33
-      }, {
-name: 'x64',
-      y: 24.03,
-      sliced: true,
-      selected: true
-      }]
+        series: [{
+          name: 'Agents',
+          colorByPoint: true,
+          data: [{
+            name: 'Power',
+            y: 56.33
+          }, {
+            name: 'X86',
+            y: 24.03,
+          }]
         }]
-});
+			});
 
-    $('#container2').highcharts({
-        chart: {
-            type: 'line'
+	  taskChart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'container2',
+					defaultSeriesType: 'line',
+					events: {
+						load: requestTaskData
+					}
         },
         title: {
             text: 'Mesos Running Tasks'
@@ -104,7 +247,9 @@ name: 'x64',
             text: '0.28.1'
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          type: 'datetime',
+          tickPixelInterval: 150,
+          maxZoom: 20 * 1000
         },
         yAxis: {
             title: {
@@ -120,15 +265,16 @@ name: 'x64',
             }
         },
         series: [{
-            name: 'Running (x86)',
-            data: [7.0, 6.0, 5, 4, 8, 11, 15]
+            name: 'Power',
+            data: []
         }, {
-            name: 'Running (power)',
-            data: [4.0, 3.0, 7, 14, 5, 1, 5]
+            name: 'X86',
+            data: []
         }]
     });
 
-});
+		});
+
 </script>
 
 </body>
