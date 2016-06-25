@@ -22,20 +22,21 @@
 </table>
 
 
+<div id="log"></div>
 
 <script>
-		var offerChart; // global
-		var agentChart; // global
-		var taskChart;  // global
+    var offerChart; // global
+    var agentChart; // global
+    var taskChart;  // global
     var agentInfo = {};
 
-		/**
-		 * Request data from the server, add it to the graph and set a timeout to request again
-		 */
-		function requestOfferData() {
-			$.ajax({
+        /**
+         * Request data from the server, add it to the graph and set a timeout to request again
+         */
+        function requestOfferData() {
+            $.ajax({
         url: 'http://9.111.143.201:5050/slaves',
-				success: function(data) {
+                success: function(data) {
           newData={}; 
 
           newData.used_offers = 0;
@@ -62,19 +63,19 @@
             y: newData.free_offers,
           }]
 
-					offerChart.series[0].setData(pieData);
+                    offerChart.series[0].setData(pieData);
 
-					// call it again after one second
-					setTimeout(requestOfferData, 1000);
-				},
-				cache: false
-			});
-		}
+                    // call it again after one second
+                    setTimeout(requestOfferData, 1000);
+                },
+                cache: false
+            });
+        }
 
-		function requestAgentData() {
-			$.ajax({
+        function requestAgentData() {
+            $.ajax({
         url: 'http://9.111.143.201:5050/slaves',
-				success: function(data) {
+                success: function(data) {
           newData={}; 
 
           newData.powerAgent = 0;
@@ -99,78 +100,74 @@
             y: newData.x86Agent,
           }]
 
-					agentChart.series[0].setData(pieData);
+                    agentChart.series[0].setData(pieData);
 
-					// call it again after one second
-					setTimeout(requestAgentData, 1000);
-				},
-				cache: false
-			});
-		}
+                    // call it again after one second
+                    setTimeout(requestAgentData, 1000);
+                },
+                cache: false
+            });
+        }
 
-		function requestTaskData() {
-			$.ajax({
-        url: 'http://9.111.143.201:5050/tasks',
-				success: function(data) {
-          newData={}; 
+        function requestTaskData() {
+            $.ajax({
+                url: 'http://9.111.143.201:5050/tasks',
+                success: function(data) {
+                  newData={}; 
 
-          newData.powerAgent = 0;
-          newData.x86Agent = 0;
+                  newData.powerAgent = 0;
+                  newData.x86Agent = 0;
 
-          for (x in data.tasks) {
-            if (!(data.tasks[x].state && data.tasks[x].slave_id)) {
-              continue;
-            }
-            if (data.tasks[x].state != "TASK_RUNNING")  {
-              continue;
-            }
+                  for (x in data.tasks) {
+                    if (!(data.tasks[x].state && data.tasks[x].slave_id)) {
+                      continue;
+                    }
 
-            alert(x);
-            var slaveId = data.tasks[x].slave_id;
-            if (agentInfo[slaveId] && agentInfo[slaveId] == 1) {
-              newData.powerAgent += 1;
-            } else {
-              newData.x86Agent += 1;
-            }
-          }
+                    if (data.tasks[x].state != "TASK_RUNNING")  {
+                      continue;
+                    }
 
-          datetime = (new Date()).time();
+                    var slaveId = data.tasks[x].slave_id;
+                    if (agentInfo[slaveId] && agentInfo[slaveId] == 1) {
+                      newData.powerAgent += 1;
+                    } else {
+                      newData.x86Agent += 1;
+                    }
+                  }
 
-          alert(datetime);
-          alert(newData.powerAgent);
-          alert(newData.x86Agent);
+                  datetime = (new Date()).getTime();
 
-          pointPoint = [datetime, newData.powerAgent];
-          x86Point = [datetime, newData.x86Agent];
+                  powerPoint = [datetime, newData.powerAgent];
+                  x86Point = [datetime, newData.x86Agent];
 
-          var series = chart.series[0],
-              shift = series.data.length > 20; // shift if the series is longer than 20
+                  var series = taskChart.series[0],
+                      shift = series.data.length > 20; // shift if the series is longer than 20
 
-          // add the point
-          chart.series[0].addPoint(powerPoint, true, shift);
-          chart.series[1].addPoint(x86Point, true, shift);
+                  // add the point
+                  taskChart.series[0].addPoint(powerPoint, true, shift);
+                  taskChart.series[1].addPoint(x86Point, true, shift);
 
-					// call it again after one second
-					setTimeout(requestTaskData, 1000);
-				},
-				cache: false
-			});
-		}
+                  // call it again after one second
+                  setTimeout(requestTaskData, 60000);
+                },
+                cache: false
+            });
+        }
 
 
-		$(document).ready(function() {
-			offerChart = new Highcharts.Chart({
-				chart: {
-					renderTo: 'container',
-					defaultSeriesType: 'pie',
-					events: {
-						load: requestOfferData
-					}
-				},
-				title: {
-					text: 'Mesos Offer'
-				},
-				plotOptions: {
+        $(document).ready(function() {
+            offerChart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'container',
+                    defaultSeriesType: 'pie',
+                    events: {
+                        load: requestOfferData
+                    }
+                },
+                title: {
+                    text: 'Mesos Offer'
+                },
+                plotOptions: {
           pie: {
             allowPointSelect: true,
             cursor: 'pointer',
@@ -195,20 +192,20 @@
             y: 10.38
           }]
         }]
-			});
+            });
 
-			agentChart = new Highcharts.Chart({
-				chart: {
-					renderTo: 'container1',
-					defaultSeriesType: 'pie',
-					events: {
-						load: requestAgentData
-					}
-				},
-				title: {
-					text: 'Mesos Agents'
-				},
-				plotOptions: {
+            agentChart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'container1',
+                    defaultSeriesType: 'pie',
+                    events: {
+                        load: requestAgentData
+                    }
+                },
+                title: {
+                    text: 'Mesos Agents'
+                },
+                plotOptions: {
           pie: {
             allowPointSelect: true,
             cursor: 'pointer',
@@ -230,50 +227,49 @@
             y: 24.03,
           }]
         }]
-			});
+            });
 
-	  taskChart = new Highcharts.Chart({
-				chart: {
-					renderTo: 'container2',
-					defaultSeriesType: 'line',
-					events: {
-						load: requestTaskData
-					}
-        },
-        title: {
-            text: 'Mesos Running Tasks'
-        },
-        subtitle: {
-            text: '0.28.1'
-        },
-        xAxis: {
-          type: 'datetime',
-          tickPixelInterval: 150,
-          maxZoom: 20 * 1000
-        },
-        yAxis: {
-            title: {
-                text: 'Running Tasks'
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
+      taskChart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'container2',
+                    defaultSeriesType: 'line',
+                    events: {
+                        load: requestTaskData
+                    }
                 },
-                enableMouseTracking: false
-            }
-        },
-        series: [{
-            name: 'Power',
-            data: []
-        }, {
-            name: 'X86',
-            data: []
-        }]
+                title: {
+                    text: 'Mesos Running Tasks'
+                },
+                subtitle: {
+                    text: '0.28.1'
+                },
+                xAxis: {
+                  type: 'datetime',
+                  tickPixelInterval: 150,
+                  maxZoom: 20 * 1000
+                },
+                yAxis: {
+                    title: {
+                        text: 'Running Tasks'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    name: 'Power',
+                    data: []
+                }, {
+                    name: 'X86',
+                    data: []
+                }]
     });
-
-		});
+  });
 
 </script>
 
